@@ -1,0 +1,6 @@
+{
+  "name": "PHÂN TÍCH VIDEO TRIỆU VIEW TO PROMPT VEO3 - ĐỔI LỜI THOẠI GỐC",
+  "description": "A professional tool that analyzes video content and generates detailed technical JSON prompts for AI video generation (Veo 3), following strict 8-second segmentation and character/background consistency rules.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
