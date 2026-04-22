@@ -1,5 +1,6 @@
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import { AnalysisResult, SceneJson } from "./types";
+import { getApiBaseUrl } from "./src/lib/api";
 
 // Ensure we don't try to overwrite fetch if it's read-only
 const getFetch = () => {
@@ -79,7 +80,8 @@ export async function analyzeVideo(file: File, style: string, model: string, las
   });
 
   try {
-    const response = await fetch("/api/analyze", {
+    const baseUrl = getApiBaseUrl();
+    const response = await fetch(`${baseUrl}/api/analyze`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -149,7 +151,8 @@ export async function transcribeAudioVideo(file: File, model: string, hasTimesta
   const prompt = `Hãy chuyển đổi nội dung âm thanh/video này thành văn bản tiếng Việt một cách chính xác nhất. ${hasTimestamp ? "Hãy bao gồm mốc thời gian [hh:mm:ss] cho mỗi đoạn thoại." : "Chỉ lấy nội dung văn bản, không cần mốc thời gian."} Nếu có nhiều người nói, hãy phân biệt người nói. Định dạng đầu ra: Văn bản thuần túy.`;
   
   try {
-    const response = await fetch("/api/transcribe", {
+    const baseUrl = getApiBaseUrl();
+    const response = await fetch(`${baseUrl}/api/transcribe`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

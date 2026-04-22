@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 import { GoogleGenAI } from "@google/genai";
 import admin from "firebase-admin";
 import { getFirestore } from "firebase-admin/firestore";
+import cors from "cors";
 import firebaseConfig from "./firebase-applet-config.json" with { type: "json" };
 
 const __filename = fileURLToPath(import.meta.url);
@@ -46,6 +47,7 @@ async function startServer() {
   const app = express();
   const PORT = 3000;
 
+  app.use(cors()); // Enable CORS for all routes
   // Increase payload size for video files
   app.use(express.json({ limit: '100mb' }));
   app.use(express.urlencoded({ limit: '100mb', extended: true }));

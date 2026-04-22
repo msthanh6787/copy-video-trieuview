@@ -52,6 +52,8 @@ import {
 } from 'lucide-react';
 import { cn } from './src/lib/utils';
 
+import { getApiBaseUrl } from './src/lib/api';
+
 const AdminDashboard = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [users, setUsers] = useState<UserProfile[]>([]);
@@ -302,7 +304,8 @@ export default function App() {
           } else {
             // Create new profile with IP check
             try {
-              const response = await fetch('/api/check-registration-limit', {
+              const baseUrl = getApiBaseUrl();
+              const response = await fetch(`${baseUrl}/api/check-registration-limit`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ uid: firebaseUser.uid })
